@@ -50,10 +50,10 @@ function Page() {
       timestamp: new Date().toLocaleTimeString(),
     },
   ]);
-  
+
   const [newMessage, setNewMessage] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+
   const [clinicalNotes, setClinicalNotes] = useState<ClinicalNote[]>([
     {
       id: 1,
@@ -81,7 +81,7 @@ function Page() {
       timestamp: new Date().toLocaleTimeString(),
     },
   ]);
-  
+
   const [vitalSigns, setVitalSigns] = useState<VitalSigns>({
     heartRate: 112,
     bloodGlucose: 145,
@@ -105,7 +105,7 @@ function Page() {
 
   const handleSendMessage = () => {
     if (newMessage.trim() === "") return;
-    
+
     setMessages([
       ...messages,
       {
@@ -140,9 +140,9 @@ function Page() {
   };
 
   return (
-    <div className="flex h-full w-full flex-col items-center bg-neutral-50 px-px py-8 mobile:px-4 mobile:py-4">
-      <div className="flex w-full max-w-[1280px] flex-col items-start rounded-lg bg-default-background shadow-lg">
-        <div className="flex w-full items-center justify-between border-b border-solid border-neutral-200 px-6 py-4 mobile:flex-col mobile:items-start mobile:justify-start mobile:gap-4">
+    <div className="flex h-screen w-screen flex-col bg-neutral-50 overflow-hidden">
+      <div className="flex w-full max-w-full h-full flex-col rounded-lg bg-default-background shadow-lg">
+        <div className="flex w-full items-center justify-center border-b border-solid border-neutral-200 px-6 py-4 mobile:flex-col mobile:items-start mobile:justify-start mobile:gap-4">
           <div className="flex flex-col items-start gap-1">
             <div className="flex items-center gap-1">
               <span className="text-caption font-caption text-brand-primary">
@@ -157,8 +157,8 @@ function Page() {
             </span>
           </div>
         </div>
-        <div className="flex w-full items-stretch mobile:flex-col">
-          <div className="flex flex-col items-start border-r border-solid border-neutral-200 w-3/5 mobile:w-3/5 mobile:border-r-0 mobile:border-b">
+        <div className="flex w-full flex-1 items-stretch overflow-hidden mobile:flex-col">
+          <div className="flex flex-col items-start border-r border-solid border-neutral-200 w-3/5 h-full mobile:w-3/5 mobile:border-r-0 mobile:border-b">
             <div className="flex w-full items-center justify-between px-6 py-4">
               <div className="flex items-center gap-3">
                 <Avatar
@@ -181,7 +181,7 @@ function Page() {
                   variant="brand-tertiary"
                   size="small"
                   icon={<FeatherFileText />}
-                  onClick={() => {}}
+                  onClick={() => { }}
                 >
                   Картон
                 </Button>
@@ -207,57 +207,49 @@ function Page() {
             <div className="flex w-full items-start border-b border-solid border-neutral-200">
               <button
                 onClick={() => setActiveTab("chat")}
-                className={`flex items-center justify-center py-3 flex-1 ${
-                  activeTab === "chat"
-                    ? "border-b-2 border-solid border-brand-primary"
-                    : "bg-neutral-50"
-                }`}
+                className={`flex items-center justify-center py-3 flex-1 ${activeTab === "chat"
+                  ? "border-b-2 border-solid border-brand-primary"
+                  : "bg-neutral-50"
+                  }`}
               >
-                <span className={`text-body font-body ${
-                  activeTab === "chat" ? "text-default-font font-body-bold" : "text-subtext-color"
-                }`}>
+                <span className={`text-body font-body ${activeTab === "chat" ? "text-default-font font-body-bold" : "text-subtext-color"
+                  }`}>
                   Чат
                 </span>
               </button>
               <button
                 onClick={() => setActiveTab("history")}
-                className={`flex items-center justify-center py-3 flex-1 ${
-                  activeTab === "history"
-                    ? "border-b-2 border-solid border-brand-primary"
-                    : "bg-neutral-50"
-                }`}
+                className={`flex items-center justify-center py-3 flex-1 ${activeTab === "history"
+                  ? "border-b-2 border-solid border-brand-primary"
+                  : "bg-neutral-50"
+                  }`}
               >
-                <span className={`text-body font-body ${
-                  activeTab === "history" ? "text-default-font font-body-bold" : "text-subtext-color"
-                }`}>
+                <span className={`text-body font-body ${activeTab === "history" ? "text-default-font font-body-bold" : "text-subtext-color"
+                  }`}>
                   История (HPI)
                 </span>
               </button>
               <button
                 onClick={() => setActiveTab("tab3")}
-                className={`flex items-center justify-center py-3 flex-1 ${
-                  activeTab === "tab3"
-                    ? "border-b-2 border-solid border-brand-primary"
-                    : "bg-neutral-50"
-                }`}
+                className={`flex items-center justify-center py-3 flex-1 ${activeTab === "tab3"
+                  ? "border-b-2 border-solid border-brand-primary"
+                  : "bg-neutral-50"
+                  }`}
               >
-                <span className={`text-body font-body ${
-                  activeTab === "tab3" ? "text-default-font font-body-bold" : "text-subtext-color"
-                }`}>
+                <span className={`text-body font-body ${activeTab === "tab3" ? "text-default-font font-body-bold" : "text-subtext-color"
+                  }`}>
                   ...
                 </span>
               </button>
               <button
                 onClick={() => setActiveTab("tab4")}
-                className={`flex items-center justify-center py-3 flex-1 ${
-                  activeTab === "tab4"
-                    ? "border-b-2 border-solid border-brand-primary"
-                    : "bg-neutral-50"
-                }`}
+                className={`flex items-center justify-center py-3 flex-1 ${activeTab === "tab4"
+                  ? "border-b-2 border-solid border-brand-primary"
+                  : "bg-neutral-50"
+                  }`}
               >
-                <span className={`text-body font-body ${
-                  activeTab === "tab4" ? "text-default-font font-body-bold" : "text-subtext-color"
-                }`}>
+                <span className={`text-body font-body ${activeTab === "tab4" ? "text-default-font font-body-bold" : "text-subtext-color"
+                  }`}>
                   ...
                 </span>
               </button>
@@ -270,11 +262,10 @@ function Page() {
                       {messages.map((message) => (
                         <div
                           key={message.id}
-                          className={`flex w-full ${
-                            message.sender === "examiner"
-                              ? "flex-col items-end"
-                              : "items-start gap-2"
-                          }`}
+                          className={`flex w-full ${message.sender === "examiner"
+                            ? "flex-col items-end"
+                            : "items-start gap-2"
+                            }`}
                         >
                           {message.sender === "patient" && (
                             <Avatar
@@ -285,11 +276,10 @@ function Page() {
                             </Avatar>
                           )}
                           <div
-                            className={`flex max-w-[448px] flex-col items-start rounded-md px-3 py-2 ${
-                              message.sender === "examiner"
-                                ? "bg-brand-50"
-                                : "bg-neutral-100"
-                            }`}
+                            className={`flex max-w-[448px] flex-col items-start rounded-md px-3 py-2 ${message.sender === "examiner"
+                              ? "bg-brand-50"
+                              : "bg-neutral-100"
+                              }`}
                           >
                             <span className="text-body font-body text-default-font">
                               {message.text}
@@ -348,7 +338,7 @@ function Page() {
               )}
             </div>
           </div>
-          <div className="flex flex-col items-start w-2/5 mobile:w-full mobile:flex-none" style={{ maxHeight: "100vh", overflow: "hidden" }}>
+          <div className="flex flex-col items-start w-2/5 h-full overflow-hidden mobile:w-full mobile:flex-none">
             <div className="flex w-full items-center justify-between border-b border-solid border-neutral-200 px-6 py-4">
               <span className="text-heading-3 font-heading-3 text-default-font">
                 Жизнени показатели
@@ -418,90 +408,87 @@ function Page() {
                   </div>
                 </div>
               </div>
-              <div className="flex w-full items-start gap-3 border-b border-solid border-neutral-200 px-6 py-4">
-                <div className="flex flex-col items-start gap-3 flex-1">
+              <div className="flex w-full items-center border-b border-solid border-neutral-200 px-6 py-6">
+                <div className="flex flex-col items-center justify-center gap-4 w-1/2">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <FeatherDroplet className="text-body font-body text-default-font" />
-                      <span className="text-body-bold font-body-bold text-default-font">
+                    <div className="flex items-center gap-3">
+                      <FeatherDroplet className="text-body-large font-body-large text-default-font" />
+                      <span className="text-body-large-bold font-body-large-bold text-default-font">
                         Глюкоза в кръвта
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-end gap-3">
-                    <div className="flex flex-col items-start gap-1">
-                      <div className="flex items-center gap-1">
+
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex items-center gap-2">
                         <button
                           onClick={() => adjustVitalSign("bloodGlucose", -5)}
-                          className="flex items-center justify-center w-6 h-6 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
+                          className="flex items-center justify-center w-8 h-8 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
                         >
-                          <FeatherChevronDown className="text-caption" />
+                          <FeatherChevronDown className="text-body" />
                         </button>
-                        <span className="text-heading-2 font-heading-2 text-default-font min-w-[70px] text-center">
+
+                        <span className="text-display-2 font-display-2 text-default-font min-w-[90px] text-center">
                           {vitalSigns.bloodGlucose}
                         </span>
+
                         <button
                           onClick={() => adjustVitalSign("bloodGlucose", 5)}
-                          className="flex items-center justify-center w-6 h-6 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
+                          className="flex items-center justify-center w-8 h-8 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
                         >
-                          <FeatherChevronUp className="text-caption" />
+                          <FeatherChevronUp className="text-body" />
                         </button>
                       </div>
-                      <span className="text-caption font-caption text-subtext-color">
+
+                      <span className="text-body font-body text-subtext-color">
                         mg/dL
                       </span>
                     </div>
-                    <div className="flex h-12 items-end gap-1 flex-1">
-                      <div className="flex items-start rounded-sm bg-brand-200 flex-1" />
-                      <div className="flex items-start rounded-sm bg-brand-300 flex-1" />
-                      <div className="flex items-start rounded-sm bg-brand-400 flex-1" />
-                      <div className="flex items-start rounded-sm bg-brand-500 flex-1" />
-                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-start gap-3 flex-1">
+
+                <div className="flex flex-col items-center justify-center gap-4 w-1/2">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <FeatherHeart className="text-body font-body text-default-font" />
-                      <span className="text-body-bold font-body-bold text-default-font">
+                    <div className="flex items-center gap-3">
+                      <FeatherHeart className="text-body-large font-body-large text-default-font" />
+                      <span className="text-body-large-bold font-body-large-bold text-default-font">
                         Кръвно Налягане
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-end gap-3">
-                    <div className="flex flex-col items-start gap-1">
-                      <div className="flex items-center gap-1">
+
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex items-center gap-2">
                         <button
                           onClick={() => {
                             adjustVitalSign("systolicBP", -2);
                             adjustVitalSign("diastolicBP", -1);
                           }}
-                          className="flex items-center justify-center w-6 h-6 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
+                          className="flex items-center justify-center w-8 h-8 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
                         >
-                          <FeatherChevronDown className="text-caption" />
+                          <FeatherChevronDown className="text-body" />
                         </button>
-                        <span className="text-heading-2 font-heading-2 text-default-font min-w-[100px] text-center">
+
+                        <span className="text-display-2 font-display-2 text-default-font min-w-[130px] text-center">
                           {vitalSigns.systolicBP}/{vitalSigns.diastolicBP}
                         </span>
+
                         <button
                           onClick={() => {
                             adjustVitalSign("systolicBP", 2);
                             adjustVitalSign("diastolicBP", 1);
                           }}
-                          className="flex items-center justify-center w-6 h-6 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
+                          className="flex items-center justify-center w-8 h-8 rounded hover:bg-neutral-100 text-subtext-color hover:text-default-font"
                         >
-                          <FeatherChevronUp className="text-caption" />
+                          <FeatherChevronUp className="text-body" />
                         </button>
                       </div>
-                      <span className="text-caption font-caption text-subtext-color">
+
+                      <span className="text-body font-body text-subtext-color">
                         mmHg
                       </span>
-                    </div>
-                    <div className="flex h-12 items-end gap-1 flex-1">
-                      <div className="flex items-start rounded-sm bg-error-200 flex-1" />
-                      <div className="flex items-start rounded-sm bg-error-300 flex-1" />
-                      <div className="flex items-start rounded-sm bg-error-400 flex-1" />
-                      <div className="flex items-start rounded-sm bg-error-500 flex-1" />
                     </div>
                   </div>
                 </div>
@@ -625,11 +612,10 @@ function Page() {
                     )}
                     <button
                       onClick={toggleTemperature}
-                      className={`flex items-center gap-1 px-2 py-1 rounded-md border text-caption font-caption transition-colors ${
-                        vitalSigns.temperatureEnabled 
-                          ? 'border-brand-primary bg-brand-50 text-brand-primary' 
-                          : 'border-neutral-200 bg-neutral-50 text-neutral-500 hover:border-neutral-300 hover:text-neutral-600'
-                      }`}
+                      className={`flex items-center gap-1 px-2 py-1 rounded-md border text-caption font-caption transition-colors ${vitalSigns.temperatureEnabled
+                        ? 'border-brand-primary bg-brand-50 text-brand-primary'
+                        : 'border-neutral-200 bg-neutral-50 text-neutral-500 hover:border-neutral-300 hover:text-neutral-600'
+                        }`}
                     >
                       <FeatherPower className="text-caption" />
                       {vitalSigns.temperatureEnabled ? 'ON' : 'OFF'}
