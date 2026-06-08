@@ -1,0 +1,251 @@
+{
+  "scenario": {
+    "metadata": {
+      "id": "SCENARIO_001",
+      "title": "Остър миокарден инфаркт (Инфаркт на миокарда)",
+      "description": "58-годишен мъж с внезапна болка в гърдите, излъчваща се към лявата ръка, задух, бледност и изпотяване. Има хипертония, захарен диабет и висок холестерол в анамнезата.",
+      "category": "cardiac",
+      "difficulty": "intermediate",
+      "estimatedDuration": 15,
+      "language": "bg",
+      "version": "1.0",
+      "createdDate": "2024-01-01",
+      "lastModified": "2024-01-01"
+    },
+    "patient": {
+      "id": "PATIENT_001",
+      "name": "Пациент",
+      "age": 58,
+      "gender": "male",
+      "weight_kg": 0,
+      "height_cm": 0,
+      "allergies": [
+        {
+          "allergen": "Няма известни алергии",
+          "severity": "mild",
+          "reaction": "Няма"
+        }
+      ],
+      "medicalHistory": {
+        "chronic_conditions": [
+          {
+            "condition": "Хипертония",
+            "diagnosed_year": 0,
+            "status": "active"
+          },
+          {
+            "condition": "Захарен диабет",
+            "diagnosed_year": 0,
+            "status": "active"
+          },
+          {
+            "condition": "Висок холестерол",
+            "diagnosed_year": 0,
+            "status": "active"
+          }
+        ],
+        "current_medications": [
+          {
+            "name": "Метформин",
+            "dosage": "",
+            "frequency": ""
+          },
+          {
+            "name": "Лизиноприл",
+            "dosage": "",
+            "frequency": ""
+          }
+        ],
+        "surgeries": []
+      }
+    },
+    "presentation": {
+      "chief_complaint": "Болка в гърдите и затруднено дишане",
+      "history_of_present_illness": "Пациентът е седнал на диван, държи се за гърдите и изглежда тревожен. Съобщава за внезапна болка в гърдите, излъчваща се към лявата ръка. Работил в градината, когато започнала болката.",
+      "onset": "Sudden",
+      "duration": "",
+      "triggers": [
+        "Физическа активност (работа в градината)"
+      ],
+      "relieving_factors": [],
+      "aggravating_factors": [
+        "Движение"
+      ],
+      "last_meal": "Закуска преди 3 часа",
+      "last_known_well": ""
+    },
+    "vital_signs": {
+      "initial": {
+        "heart_rate": {
+          "value": 110,
+          "unit": "bpm",
+          "status": "abnormal"
+        },
+        "respiratory_rate": {
+          "value": 22,
+          "unit": "breaths/min",
+          "status": "abnormal"
+        },
+        "blood_pressure": {
+          "systolic": 160,
+          "diastolic": 90,
+          "unit": "mmHg",
+          "status": "abnormal"
+        },
+        "oxygen_saturation": {
+          "value": 95,
+          "unit": "%",
+          "on_oxygen": false,
+          "oxygen_liters": 0,
+          "status": "normal"
+        },
+        "temperature": {
+          "value": 37,
+          "unit": "°C",
+          "status": "normal"
+        },
+        "blood_glucose": {
+          "value": 0,
+          "unit": "mg/dL",
+          "status": "normal"
+        }
+      },
+      "progression": []
+    },
+    "clinical_findings": {
+      "general_appearance": "Блед вид, изпотяване, държи се за гърдите от болка, тревожен, видим дистрес",
+      "level_of_consciousness": "Alert",
+      "skin": {
+        "color": "Pale",
+        "moisture": "Diaphoretic",
+        "turgor": "Normal"
+      },
+      "head_neck": "",
+      "chest": "",
+      "abdomen": "",
+      "extremities": "",
+      "neuro_assessment": "Ориентиран по място, време и личност",
+      "special_observations": [
+        "Болката се излъчва към лявата ръка",
+        "Притискаща болка в гърдите"
+      ]
+    },
+    "clinical_notes": [
+      {
+        "id": 1,
+        "timestamp": "00:00",
+        "note": "Информация при подаване на сигнала: Обаждащият се съобщава, че мъж се оплаква от болка в гърдите и затруднено дишане.",
+        "author": "System"
+      },
+      {
+        "id": 2,
+        "timestamp": "00:00",
+        "note": "При пристигане на екипа: Пациентът е седнал на диван, държи се за гърдите и изглежда тревожен. Съобщава за внезапна болка в гърдите, излъчваща се към лявата ръка.",
+        "author": "System"
+      }
+    ],
+    "patient_messages": [
+      {
+        "id": 1,
+        "text": "Имам силна болка в гърдите, която се отдава към лявата ръка. Трудно ми е да дишам.",
+        "timestamp": "00:00",
+        "trigger": "on_arrival"
+      },
+      {
+        "id": 2,
+        "text": "Работех в градината, когато изведнъж започна тази болка.",
+        "timestamp": "00:00",
+        "trigger": "on_arrival"
+      }
+    ],
+    "expected_interventions": [
+      {
+        "id": 1,
+        "action": "Подаване на кислород",
+        "correct": true,
+        "priority": "high",
+        "timing": "within 5 minutes",
+        "expected_outcome": "Подобряване на оксигенацията"
+      },
+      {
+        "id": 2,
+        "action": "Аспирин",
+        "correct": true,
+        "priority": "high",
+        "timing": "within 10 minutes",
+        "expected_outcome": "Намаляване на тромбообразуването"
+      },
+      {
+        "id": 3,
+        "action": "Нитроглицерин (ако не е противопоказан)",
+        "correct": true,
+        "priority": "high",
+        "timing": "within 10 minutes",
+        "expected_outcome": "Облекчаване на болката в гърдите"
+      },
+      {
+        "id": 4,
+        "action": "ЕКГ",
+        "correct": true,
+        "priority": "immediate",
+        "timing": "within 5 minutes",
+        "expected_outcome": "Потвърждаване на STEMI или не-STEMI"
+      }
+    ],
+    "learning_objectives": [
+      "Правилна оценка на пациент с остра гръдна болка по ABCDE протокола",
+      "Разпознаване на признаците и симптомите на остър миокарден инфаркт",
+      "Навременна интервенция при инфаркт: кислород, аспирин, нитроглицерин",
+      "Разбиране на значението на бързото ЕКГ за диагностициране на STEMI"
+    ],
+    "assessment_criteria": [
+      {
+        "criterion": "Правилна първоначална оценка (ABCDE)",
+        "points": 10,
+        "description": "Студентът извършва систематична оценка на дихателни пътища, дишане, циркулация и т.н."
+      },
+      {
+        "criterion": "Интерпретиране на жизнените показатели",
+        "points": 10,
+        "description": "Студентът идентифицира тахикардия, тахипнея и хипертония като рискови фактори."
+      },
+      {
+        "criterion": "Правилни интервенции",
+        "points": 10,
+        "description": "Студентът прилага кислород, аспирин и иска ЕКГ в рамките на 10 минути."
+      }
+    ],
+    "common_mistakes": [
+      {
+        "mistake": "Забавяне на ЕКГ или неговото извършване",
+        "consequence": "Пропускане на STEMI, забавяне на реперфузионната терапия",
+        "correction": "ЕКГ трябва да се направи в рамките на първите 5 минути от пристигането"
+      },
+      {
+        "mistake": "Не прилагане на аспирин",
+        "consequence": "Повишен риск от тромбоза и повторен инфаркт",
+        "correction": "Аспирин 300 мг дъвче се дава при съмнение за инфаркт"
+      }
+    ],
+    "resources": {
+      "equipment_available": [
+        "Кислород",
+        "ЕКГ апарат",
+        "Пулсов оксиметър",
+        "Аспирин",
+        "Нитроглицерин",
+        "IV консумативи"
+      ],
+      "personnel_available": [
+        "Лекар",
+        "Медицинска сестра"
+      ],
+      "medications_available": [
+        "Аспирин",
+        "Нитроглицерин",
+        "Метформин",
+        "Лизиноприл"
+      ]
+    }
+  }
+}

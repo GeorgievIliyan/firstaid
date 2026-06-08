@@ -1,0 +1,199 @@
+{
+  "scenario": {
+    "metadata": {
+      "id": "SCENARIO_001",
+      "title": "Scenario Title",
+      "description": "Brief description of the scenario",
+      "category": "cardiac|respiratory|trauma|neurological|other",
+      "difficulty": "beginner|intermediate|advanced",
+      "estimatedDuration": 15,
+      "language": "bg",
+      "version": "1.0",
+      "createdDate": "2024-01-01",
+      "lastModified": "2024-01-01"
+    },
+    "patient": {
+      "id": "PATIENT_001",
+      "name": "Patient Name",
+      "age": 0,
+      "gender": "male|female|other",
+      "weight_kg": 0,
+      "height_cm": 0,
+      "allergies": [
+        {
+          "allergen": "Substance",
+          "severity": "mild|moderate|severe",
+          "reaction": "Description"
+        }
+      ],
+      "medicalHistory": {
+        "chronic_conditions": [
+          {
+            "condition": "Condition name",
+            "diagnosed_year": 2020,
+            "status": "active|inactive"
+          }
+        ],
+        "current_medications": [
+          {
+            "name": "Medication name",
+            "dosage": "500mg",
+            "frequency": "twice daily"
+          }
+        ],
+        "surgeries": [
+          {
+            "procedure": "Surgery name",
+            "year": 2020
+          }
+        ]
+      }
+    },
+    "presentation": {
+      "chief_complaint": "Main complaint",
+      "history_of_present_illness": "Detailed description of what happened",
+      "onset": "Sudden|Gradual",
+      "duration": "5 minutes",
+      "triggers": [
+        "Trigger 1",
+        "Trigger 2"
+      ],
+      "relieving_factors": [
+        "Factor 1"
+      ],
+      "aggravating_factors": [
+        "Factor 1"
+      ],
+      "last_meal": "Time and content",
+      "last_known_well": "Time"
+    },
+    "vital_signs": {
+      "initial": {
+        "heart_rate": {
+          "value": 0,
+          "unit": "bpm",
+          "status": "normal|abnormal"
+        },
+        "respiratory_rate": {
+          "value": 0,
+          "unit": "breaths/min",
+          "status": "normal|abnormal"
+        },
+        "blood_pressure": {
+          "systolic": 0,
+          "diastolic": 0,
+          "unit": "mmHg",
+          "status": "normal|abnormal"
+        },
+        "oxygen_saturation": {
+          "value": 0,
+          "unit": "%",
+          "on_oxygen": false,
+          "oxygen_liters": 0,
+          "status": "normal|abnormal"
+        },
+        "temperature": {
+          "value": 0,
+          "unit": "°C",
+          "status": "normal|abnormal"
+        },
+        "blood_glucose": {
+          "value": 0,
+          "unit": "mg/dL",
+          "status": "normal|abnormal"
+        }
+      },
+      "progression": [
+        {
+          "minute": 5,
+          "changes": {
+            "heart_rate": 0,
+            "respiratory_rate": 0,
+            "blood_pressure_systolic": 0,
+            "blood_pressure_diastolic": 0
+          },
+          "trigger": "Based on student actions or time"
+        }
+      ]
+    },
+    "clinical_findings": {
+      "general_appearance": "Description",
+      "level_of_consciousness": "Alert|Verbal|Pain|Unresponsive",
+      "skin": {
+        "color": "Normal|Pale|Flushed|Cyanotic",
+        "moisture": "Dry|Diaphoretic|Cool",
+        "turgor": "Normal|Poor"
+      },
+      "head_neck": "Findings",
+      "chest": "Findings",
+      "abdomen": "Findings",
+      "extremities": "Findings",
+      "neuro_assessment": "Findings",
+      "special_observations": [
+        "Observation 1"
+      ]
+    },
+    "clinical_notes": [
+      {
+        "id": 1,
+        "timestamp": "00:00",
+        "note": "Clinical note text",
+        "author": "System|Examiner"
+      }
+    ],
+    "patient_messages": [
+      {
+        "id": 1,
+        "text": "Patient statement",
+        "timestamp": "00:00",
+        "trigger": "on_arrival|after_assessment|on_treatment"
+      }
+    ],
+    "expected_interventions": [
+      {
+        "id": 1,
+        "action": "Intervention description",
+        "correct": true,
+        "priority": "immediate|high|medium|low",
+        "timing": "within 5 minutes",
+        "expected_outcome": "Description of expected patient response"
+      }
+    ],
+    "learning_objectives": [
+      "Objective 1",
+      "Objective 2",
+      "Objective 3"
+    ],
+    "assessment_criteria": [
+      {
+        "criterion": "Assessment criterion",
+        "points": 10,
+        "description": "How to evaluate this criterion"
+      }
+    ],
+    "common_mistakes": [
+      {
+        "mistake": "Common error description",
+        "consequence": "What happens if this error is made",
+        "correction": "How to correct it"
+      }
+    ],
+    "resources": {
+      "equipment_available": [
+        "Oxygen",
+        "AED",
+        "IV supplies",
+        "Monitor"
+      ],
+      "personnel_available": [
+        "Doctor",
+        "Nurse",
+        "Paramedic"
+      ],
+      "medications_available": [
+        "Aspirin",
+        "Nitroglycerin"
+      ]
+    }
+  }
+}
