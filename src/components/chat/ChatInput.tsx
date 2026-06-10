@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "../../ui/components/Button/Button";
-import { TextArea } from "../../ui/components/TextArea/TextArea";
 
 interface ChatInputProps {
   value: string;
@@ -18,25 +17,20 @@ export function ChatInput({ value, onChange, onSend }: ChatInputProps) {
   };
 
   return (
-    <div className="flex w-full items-start justify-center border-t border-solid border-neutral-200 px-6 py-4">
-      <TextArea
-        className="h-auto grow shrink-0 basis-0"
-        variant="filled"
-        label=""
-        helpText=""
-      >
-        <TextArea.Input
-          placeholder="Чат"
-          value={value}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-      </TextArea>
+    <div className="flex w-full items-center gap-2 border-t border-solid border-neutral-200 px-6 py-4">
+      <input
+        type="text"
+        className="flex-1 rounded-md border border-solid border-neutral-300 bg-white px-4 py-3 text-body-large font-body-large text-default-font placeholder:text-subtext-color focus:border-brand-primary focus:outline-none focus:ring-1 focus:ring-brand-primary"
+        placeholder="Чат"
+        value={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+        onKeyPress={handleKeyPress}
+      />
       <Button
         variant="brand-primary"
-        size="small"
+        size="medium"
         onClick={onSend}
-        className="ml-2"
+        className="h-[48px] whitespace-nowrap"
       >
         Изпрати
       </Button>

@@ -38,7 +38,7 @@ export function SideMenuContainer({
   onToggleTemperature 
 }: SideMenuContainerProps) {
   return (
-    <div className="flex flex-col items-start w-2/5 h-full overflow-hidden mobile:w-full mobile:flex-none">
+    <div className="flex flex-col items-start w-45/100 h-full overflow-hidden mobile:w-full mobile:flex-none">
       <VitalSignsHeader />
       <div className="flex flex-col w-full overflow-y-auto flex-1">
         <ECGMonitor 

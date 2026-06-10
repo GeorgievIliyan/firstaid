@@ -33,7 +33,7 @@ export function ChatContainer({ messages, onSendMessage, onResetChat }: ChatCont
   };
 
   return (
-    <div className="flex flex-col items-start border-r border-solid border-neutral-200 w-3/5 h-full mobile:w-3/5 mobile:border-r-0 mobile:border-b">
+    <div className="flex flex-col items-start border-r border-solid border-neutral-200 w-55/100 h-full mobile:w-full mobile:border-r-0 mobile:border-b">
       <ChatHeader onResetChat={onResetChat} />
       <ChatTabs activeTab={activeTab} onTabChange={setActiveTab} />
       <div className="flex w-full flex-col items-start flex-1" style={{ height: "500px" }}>

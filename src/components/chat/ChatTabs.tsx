@@ -9,9 +9,8 @@ interface ChatTabsProps {
 
 const tabs: Array<{ id: TabType; label: string }> = [
   { id: "chat", label: "Чат" },
-  { id: "history", label: "История (HPI)" },
-  { id: "tab3", label: "..." },
-  { id: "tab4", label: "..." },
+  { id: "history", label: "История" },
+  { id: "tab3", label: "Заболявания" },
 ];
 
 export function ChatTabs({ activeTab, onTabChange }: ChatTabsProps) {

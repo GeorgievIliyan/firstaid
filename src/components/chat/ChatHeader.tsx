@@ -2,7 +2,6 @@
 import { Avatar } from "../../ui/components/Avatar/Avatar";
 import { Button } from "../../ui/components/Button/Button";
 import { FeatherFileText } from "@subframe/core";
-import { FeatherRefreshCw } from "@subframe/core";
 
 interface ChatHeaderProps {
   onResetChat: () => void;
@@ -35,14 +34,6 @@ export function ChatHeader({ onResetChat }: ChatHeaderProps) {
           onClick={() => { }}
         >
           Картон
-        </Button>
-        <Button
-          variant="brand-tertiary"
-          size="small"
-          icon={<FeatherRefreshCw />}
-          onClick={onResetChat}
-        >
-          Рестарт
         </Button>
       </div>
     </div>

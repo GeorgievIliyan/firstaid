@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { ChatContainer } from "../chat/ChatContainer";
 import { SideMenuContainer } from "../vitals/SideMenuContainer";
+import { playTTS } from "../../lib/playTTS"
+import { useEffect, useRef, useState } from "react";
 
 interface Message {
   id: number;
@@ -28,42 +29,34 @@ interface VitalSigns {
   temperatureEnabled: boolean;
 }
 
+const startMessage: Message = {
+  id: 1,
+  text: "Помощ! Гърдите много ме болят и не мога да дишам добре. Сърцето ми бие много бързо и усещам силно стягане от лявата страна. Страх ме е, че получавам инфаркт!",
+  sender: "patient",
+  timestamp: new Date().toLocaleTimeString(),
+}
+
 export default function SessionPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: "Помощ! Гърдите много ме болят и не мога да дишам добре. Сърцето ми бие много бързо и усещам силно стягане от лявата страна. Страх ме е, че получавам инфаркт!",
-      sender: "patient",
-      timestamp: new Date().toLocaleTimeString(),
-    },
-  ]);
+
+  const hasPlayedRef = useRef(false);
+
+  useEffect(() => {
+    if (hasPlayedRef.current) {
+      return;
+    }
+
+    hasPlayedRef.current = true;
+    playTTS(startMessage.text);
+  }, []);
+
+  const [messages, setMessages] = useState<Message[]>([startMessage]);
 
   const [clinicalNotes] = useState<ClinicalNote[]>([
     {
       id: 1,
       text: "Пациентката постъпва с остра болка в гърдите, тахикардия и затруднено дишане. Необходима е незабавна оценка на сърдечния статус.",
       timestamp: new Date().toLocaleTimeString(),
-    },
-    {
-      id: 2,
-      text: "ЕКГ показва синусова тахикардия. Кръвното налягане е леко повишено. Високорисков профил поради фамилна анамнеза за диабет.",
-      timestamp: new Date().toLocaleTimeString(),
-    },
-    {
-      id: 3,
-      text: "Диференциална диагноза: остър коронарен синдром, паник атака, перикардит. Препоръчва се кардиологична консултация.",
-      timestamp: new Date().toLocaleTimeString(),
-    },
-    {
-      id: 4,
-      text: "План: мониториране на витални показатели, ЕКГ на всеки 30 минути, подготовка за евентуална тромболиза при потвърждаване на STEMI.",
-      timestamp: new Date().toLocaleTimeString(),
-    },
-    {
-      id: 5,
-      text: "Оценка на рискови фактори: захарен диабет тип 2 (фамилна обремененост), хипертония, затлъстяване. Възрастта е нетипична, но не изключва сърдечна патология.",
-      timestamp: new Date().toLocaleTimeString(),
-    },
+    }
   ]);
 
   const [vitalSigns, setVitalSigns] = useState<VitalSigns>({
@@ -78,26 +71,19 @@ export default function SessionPage() {
   });
 
   const handleSendMessage = (messageText: string) => {
-    setMessages([
-      ...messages,
-      {
-        id: messages.length + 1,
-        text: messageText,
-        sender: "examiner",
-        timestamp: new Date().toLocaleTimeString(),
-      },
-    ]);
+    const newMessage: Message = {
+      id: messages.length + 1,
+      text: messageText,
+      sender: "examiner",
+      timestamp: new Date().toLocaleTimeString(),
+    };
+
+    setMessages([...messages, newMessage]);
   };
 
   const handleResetChat = () => {
-    setMessages([
-      {
-        id: 1,
-        text: "Помощ! Гърдите много ме болят и не мога да дишам добре. Сърцето ми бие много бързо и усещам силно стягане от лявата страна. Страх ме е, че получавам инфаркт!",
-        sender: "patient",
-        timestamp: new Date().toLocaleTimeString(),
-      },
-    ]);
+    setMessages([startMessage]);
+    playTTS(startMessage.text);
   };
 
   const adjustVitalSign = (field: keyof VitalSigns, amount: number) => {
