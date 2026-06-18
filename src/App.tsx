@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import SessionPage from "./components/session/SessionPage";
-import { SessionCodeEntry as CodePage } from "./components/session/SessionEntryCode";
+import SetupPage from "./pages/SetupPage";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CodePage />} />
+        <Route path="/" element={<SetupPage />} />
         <Route path="/session" element={<SessionPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

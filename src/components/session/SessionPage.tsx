@@ -3,7 +3,8 @@
 import { ChatContainer } from "../chat/ChatContainer";
 import { SideMenuContainer } from "../vitals/SideMenuContainer";
 import { playTTS } from "../../lib/playTTS"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Message {
   id: number;
@@ -29,14 +30,68 @@ interface VitalSigns {
   temperatureEnabled: boolean;
 }
 
-const startMessage: Message = {
-  id: 1,
-  text: "Помощ! Гърдите много ме болят и не мога да дишам добре. Сърцето ми бие много бързо и усещам силно стягане от лявата страна. Страх ме е, че получавам инфаркт!",
-  sender: "patient",
-  timestamp: new Date().toLocaleTimeString(),
+function getScenarioStartText(scenario: any) {
+  const firstPatientMessage = scenario?.scenario?.patient_messages?.[0]?.text?.trim();
+  if (firstPatientMessage) {
+    return firstPatientMessage;
+  }
+
+  const chiefComplaint = scenario?.scenario?.presentation?.chief_complaint?.trim();
+  if (chiefComplaint) {
+    return chiefComplaint;
+  }
+
+  return scenario?.scenario?.metadata?.description?.trim() ||
+    "Помощ! Имам спешен случай и трябва да помогнете на пациента незабавно.";
 }
 
 export default function SessionPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const payload = location.state as any;
+
+  const storedSession = (() => {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    try {
+      const raw = window.localStorage.getItem("firstaid_session");
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  })();
+
+  const scenario = payload?.scenario ?? storedSession?.scenario;
+  const studentName = payload?.studentName as string | undefined ?? storedSession?.studentName;
+
+  const startMessage = useMemo<Message>(() => ({
+    id: 1,
+    text: getScenarioStartText(scenario),
+    sender: "patient",
+    timestamp: new Date().toLocaleTimeString(),
+  }), [scenario]);
+
+  const initialVitalSigns = useMemo(() => {
+    const initial = scenario?.scenario?.vital_signs?.initial;
+    return {
+      heartRate: initial?.heart_rate?.value ?? 112,
+      bloodGlucose: initial?.blood_glucose?.value ?? 145,
+      systolicBP: initial?.blood_pressure?.systolic ?? 145,
+      diastolicBP: initial?.blood_pressure?.diastolic ?? 92,
+      respiration: initial?.respiratory_rate?.value ?? 24,
+      spO2: initial?.oxygen_saturation?.value ?? 94,
+      temperature: initial?.temperature?.value ?? 37.2,
+      temperatureEnabled: initial?.temperature?.status !== undefined ? true : true,
+    };
+  }, [scenario]);
+
+  useEffect(() => {
+    if (!scenario || !studentName) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate, scenario, studentName]);
 
   const hasPlayedRef = useRef(false);
 
@@ -45,11 +100,17 @@ export default function SessionPage() {
       return;
     }
 
-    hasPlayedRef.current = true;
-    playTTS(startMessage.text);
-  }, []);
+    if (startMessage.text) {
+      hasPlayedRef.current = true;
+      playTTS(startMessage.text);
+    }
+  }, [startMessage]);
 
   const [messages, setMessages] = useState<Message[]>([startMessage]);
+
+  useEffect(() => {
+    setMessages([startMessage]);
+  }, [startMessage]);
 
   const [clinicalNotes] = useState<ClinicalNote[]>([
     {
@@ -59,16 +120,7 @@ export default function SessionPage() {
     }
   ]);
 
-  const [vitalSigns, setVitalSigns] = useState<VitalSigns>({
-    heartRate: 112,
-    bloodGlucose: 145,
-    systolicBP: 145,
-    diastolicBP: 92,
-    respiration: 24,
-    spO2: 94,
-    temperature: 37.2,
-    temperatureEnabled: true,
-  });
+  const [vitalSigns, setVitalSigns] = useState<VitalSigns>(initialVitalSigns);
 
   const handleSendMessage = (messageText: string) => {
     const newMessage: Message = {
@@ -83,7 +135,9 @@ export default function SessionPage() {
 
   const handleResetChat = () => {
     setMessages([startMessage]);
-    playTTS(startMessage.text);
+    if (startMessage.text) {
+      playTTS(startMessage.text);
+    }
   };
 
   const adjustVitalSign = (field: keyof VitalSigns, amount: number) => {
@@ -114,8 +168,13 @@ export default function SessionPage() {
               </span>
             </div>
             <span className="text-heading-2 font-heading-2 text-default-font">
-              Остра сърдечна симптоматика при млада пациентка с диабетен профил
+              Доклад за инцидент
             </span>
+            {studentName ? (
+              <span className="text-sm text-neutral-500">
+                Изследващ студент: {studentName}
+              </span>
+            ) : null}
           </div>
         </div>
         <div className="flex w-full flex-1 items-stretch overflow-hidden mobile:flex-col">
